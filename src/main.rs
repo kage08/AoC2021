@@ -1,6 +1,6 @@
-mod prog1a;
+mod prog2a;
 
 fn main() {
-    prog1a::main1();
-    prog1a::main2();
+    prog2a::main1();
+    prog2a::main2();
 }
