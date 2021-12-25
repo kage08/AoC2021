@@ -88,7 +88,6 @@ fn map_segments(examples: &Vec<&str>) -> HashMap<u32, u32> {
             .clone(),
     );
 
-
     ans.insert(
         0,
         num_arr
