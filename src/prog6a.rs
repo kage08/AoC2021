@@ -26,9 +26,6 @@ pub fn main1() {
         ans = update_vec1(&ans);
     }
 
-    let mut sum: u64 = 0;
-    for n in ans {
-        sum += n as u64;
-    }
+    let sum: u64 = ans.iter().sum();
     println!("{}", sum);
 }
