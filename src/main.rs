@@ -22,4 +22,5 @@ fn main() {
     prog7a::main1();
     prog7a::main2();
     prog8a::main1();
+    prog8a::main2();
 }
