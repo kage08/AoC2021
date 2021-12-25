@@ -1,4 +1,4 @@
-use std::fs;
+use crate::utils::parsefile;
 
 pub fn main1() {
     let lines = parsefile("inputs/input2a.txt");
@@ -55,14 +55,4 @@ pub fn main2() {
         }
     }
     println!("{}", posx * posy);
-}
-
-fn parsefile(filename: &str) -> Vec<String> {
-    let lines = fs::read_to_string(filename).expect("Unable to read file");
-    let linevec = lines
-        .split("\n")
-        .filter(|line| line.len() > 0)
-        .map(|line| line.to_string())
-        .collect::<Vec<String>>();
-    linevec
 }

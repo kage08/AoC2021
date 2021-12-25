@@ -1,6 +1,6 @@
+use crate::utils::parsefile;
 use std::collections::HashMap;
 use std::collections::HashSet;
-use std::fs;
 
 struct Entry {
     row: Vec<usize>,
@@ -69,16 +69,6 @@ impl Entry {
         self.row.push(r);
         self.col.push(c);
     }
-}
-
-fn parsefile(filename: &str) -> Vec<String> {
-    let lines = fs::read_to_string(filename).expect("Unable to read file");
-    let linevec = lines
-        .split("\n")
-        .filter(|line| line.len() > 0)
-        .map(|line| line.to_string())
-        .collect::<Vec<String>>();
-    linevec
 }
 
 pub fn main1() {
