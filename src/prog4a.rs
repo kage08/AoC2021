@@ -1,6 +1,6 @@
-use std::fs;
 use std::collections::HashMap;
 use std::collections::HashSet;
+use std::fs;
 
 struct Entry {
     row: Vec<usize>,
@@ -26,8 +26,7 @@ impl Board {
     fn add_value(&mut self, n: i32, r: usize, c: usize) {
         if self.entrydict.contains_key(&n) {
             self.entrydict.get_mut(&n).unwrap().add_loc(r, c);
-        }
-        else {
+        } else {
             self.entrydict.insert(n, Entry::new(r, c));
         }
         self.unmarked.insert(n);
@@ -35,7 +34,7 @@ impl Board {
 
     fn add_mark(&mut self, n: i32) {
         if !self.unmarked.contains(&n) {
-            return
+            return;
         }
         self.unmarked.remove(&n);
         let entry = &self.entrydict[&n];
@@ -48,7 +47,7 @@ impl Board {
     fn get_marked_sum(&self) -> i32 {
         let mut sum = 0;
         for i in self.unmarked.iter() {
-            sum += i*self.entrydict[i].row.len() as i32;
+            sum += i * self.entrydict[i].row.len() as i32;
         }
         sum
     }
@@ -56,7 +55,6 @@ impl Board {
     fn check_marked(&self) -> bool {
         (self.sum_cols.contains(&5)) || (self.sum_rows.contains(&5))
     }
-
 }
 
 impl Entry {
@@ -83,12 +81,12 @@ fn parsefile(filename: &str) -> Vec<String> {
     linevec
 }
 
-
 pub fn main1() {
     let lines = parsefile("inputs/input4a.txt");
     let mut l_num = 0 as usize;
     let tot_lines = lines.len();
-    let mark_num = lines[0].split(",")
+    let mark_num = lines[0]
+        .split(",")
         .filter(|num| num.len() > 0)
         .map(|num| num.parse::<i32>().unwrap())
         .collect::<Vec<i32>>();
@@ -102,12 +100,13 @@ pub fn main1() {
         boards.push(Board::new());
         bcount += 1;
         for rw in 0..5 {
-            let nums = lines[l_num].split(" ")
-                .filter(|num| num.len()>0)
+            let nums = lines[l_num]
+                .split(" ")
+                .filter(|num| num.len() > 0)
                 .map(|num| num.parse::<i32>().unwrap())
                 .collect::<Vec<i32>>();
             for (cl, n) in nums.iter().enumerate() {
-                boards[bcount-1].add_value(*n, rw, cl);
+                boards[bcount - 1].add_value(*n, rw, cl);
             }
             l_num += 1;
         }
@@ -122,20 +121,20 @@ pub fn main1() {
             b.add_mark(curr_num);
             if b.check_marked() {
                 let t1 = b.get_marked_sum();
-                println!("{}",t1* curr_num);
+                println!("{}", t1 * curr_num);
                 return;
             }
         }
         m_idx += 1;
     }
-
 }
 
 pub fn main2() {
     let lines = parsefile("inputs/input4a.txt");
     let mut l_num = 0 as usize;
     let tot_lines = lines.len();
-    let mark_num = lines[0].split(",")
+    let mark_num = lines[0]
+        .split(",")
         .filter(|num| num.len() > 0)
         .map(|num| num.parse::<i32>().unwrap())
         .collect::<Vec<i32>>();
@@ -149,12 +148,13 @@ pub fn main2() {
         boards.push(Board::new());
         bcount += 1;
         for rw in 0..5 {
-            let nums = lines[l_num].split(" ")
-                .filter(|num| num.len()>0)
+            let nums = lines[l_num]
+                .split(" ")
+                .filter(|num| num.len() > 0)
                 .map(|num| num.parse::<i32>().unwrap())
                 .collect::<Vec<i32>>();
             for (cl, n) in nums.iter().enumerate() {
-                boards[bcount-1].add_value(*n, rw, cl);
+                boards[bcount - 1].add_value(*n, rw, cl);
             }
             l_num += 1;
         }
@@ -175,12 +175,11 @@ pub fn main2() {
                 left_boards.remove(&i);
                 if left_boards.is_empty() {
                     let t1 = b.get_marked_sum();
-                    println!("{}",t1* curr_num);
+                    println!("{}", t1 * curr_num);
                     return;
                 }
             }
         }
         m_idx += 1;
     }
-
 }
