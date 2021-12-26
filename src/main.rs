@@ -1,3 +1,5 @@
+mod prog10a;
+mod prog11a;
 mod prog1a;
 mod prog2a;
 mod prog3a;
@@ -7,7 +9,6 @@ mod prog6a;
 mod prog7a;
 mod prog8a;
 mod prog9a;
-mod prog10a;
 mod utils;
 
 fn main() {
@@ -29,4 +30,6 @@ fn main() {
     prog9a::main2();
     prog10a::main1();
     prog10a::main2();
+    prog11a::main1();
+    prog11a::main2();
 }
